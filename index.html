@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurassic Park - Garanta Seu Ingresso!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Cores e Botões Principais */
+        :root {
+            --color-primary: #8bc34a; /* Verde Jurassic */
+            --color-secondary: #ffc107; /* Amarelo/Ouro */
+            --color-dark: #212529;
+            --color-red-cta: #e53935;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .primary-cta {
+            background-color: var(--color-secondary);
+            color: var(--color-dark);
+        }
+
+        .primary-cta:hover {
+            background-color: #ffda6a;
+        }
+
+        .giant-cta {
+            background-color: var(--color-red-cta); /* Vermelho Ação */
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .giant-cta:hover {
+            background-color: #c62828;
+        }
+
+        /* Header */
+        .main-header {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 15px 0;
+            border-bottom: 5px solid var(--color-secondary);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 50px;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .main-nav li {
+            margin: 0 15px;
+        }
+
+        .main-nav a {
+            color: white;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            border-bottom: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .header-actions .icon-btn {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Hero Banner (Seção Principal) */
+        .hero-banner {
+            position: relative;
+            height: 600px; 
+            background-image: url('imagens/banner-jurassic.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .quick-buy-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            color: #333;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .quick-buy-form h2 {
+            text-align: center;
+            margin-top: 0;
+            color: var(--color-dark);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="date"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .radio-group label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        
+        /* Seção de Abas (Tabs) - Reposicionada */
+        .park-info-tabs {
+            padding: 40px 0;
+            background-color: #f4f4f4;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: #ccc;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .tab-btn:hover {
+            background-color: #bbb;
+        }
+
+        .tab-btn.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .tab-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none; 
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* --- ESTILOS PARA GALERIAS (DINOS, ATRAÇÕES, SERVIÇOS) --- */
+        .dino-gallery, .attraction-gallery, .service-gallery {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap; 
+        }
+
+        .dino-card, .attraction-card, .service-card {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .dino-img, .attraction-img, .service-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            border: 3px solid var(--color-primary); 
+        }
+
+        .dino-card h4, .attraction-card h4, .service-card h4 {
+            color: var(--color-dark);
+            margin-top: 0;
+        }
+
+        .species-info, .attraction-info, .service-info {
+            font-size: 0.9em;
+            color: #555;
+            min-height: 40px;
+        }
+        
+        /* Estilos de Botões para Galerias */
+        .btn-dino-details, .btn-attraction-details, .btn-service-details {
+            background-color: var(--color-secondary);
+            color: var(--color-dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-dino-details:hover, .btn-attraction-details:hover, .btn-service-details:hover {
+            background-color: #ffd64f;
+        }
+        
+        /* Estilo Específico para o Mapa */
+        .map-container {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .map-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        /* Seção de Promoções */
+        .promotions-section {
+            padding: 40px 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        .promo-cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        .main-footer {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 30px 0 10px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .footer-column {
+            width: 30%;
+        }
+
+        .footer-column h4 {
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 5px;
+        }
+
+        .footer-column a {
+            color: #ccc;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5em;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            .main-header .container, .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-nav ul {
+                margin: 10px 0;
+            }
+            .header-actions {
+                margin-top: 10px;
+            }
+            .promo-cards, .dino-gallery, .attraction-gallery, .service-gallery {
+                flex-direction: column;
+            }
+            .card, .dino-card, .attraction-card, .service-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .footer-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .footer-column {
+                width: 100%;
+            }
+        }
+    </style>
+    </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="imagens/logo-jurassic-park.png" alt="Logo Jurassic Park" width="150">
+            </div>
+            
+            <div class="header-actions">
+                <a href="#compra" class="cta-button primary-cta">🎟️ COMPRE AGORA</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-banner" id="compra">
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <h1>A Aventura de Uma Vida Espera por Você!</h1>
+            <p>Reserve seus ingressos e explore o ecossistema pré-histórico mais incrível da Terra.</p>
+            
+            <div class="quick-buy-form">
+                <h2>Garanta sua Expedição</h2>
+                <div class="form-group">
+                    <label for="data-visita">1. Selecione a Data:</label>
+                    <input type="date" id="data-visita" name="data-visita" required>
+                </div>
+
+                <div class="form-group ticket-options">
+                    <label>2. Escolha o Tipo de Ingresso:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="padrao" name="tipo-ingresso" value="Ingresso Padrão" checked>
+                        <label for="padrao">Ingresso Padrão</label>
+
+                        <input type="radio" id="vip" name="tipo-ingresso" value="Pacote VIP">
+                        <label for="vip">Pacote VIP</label>
+                        
+                        <input type="radio" id="familia" name="tipo-ingresso" value="Pacote Família">
+                        <label for="familia">Pacote Família</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidade">3. Número de Pessoas:</label>
+                    <input type="number" id="quantidade" name="quantidade" value="1" min="1" required>
+                </div>
+                
+                <button class="cta-button giant-cta" onclick="simularCompra()">GARANTIR MEUS INGRESSOS</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="park-info-tabs" id="parque">
+        <div class="container">
+            <h2>Explore Antes de Visitar</h2>
+            <div class="tabs">
+                
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'Dinos')">🔬 Dinossauros</button>
+                    <button class="tab-btn" onclick="openTab(event, 'Mapa')">🗺️ Mapa</button>
+                    <button class="tab-btn" onclick="openTab(event, 'Atracoes')">🎢 Atrações</button>
+                    <button class="tab-btn" onclick="openTab(event, 'Servicos')">🍔 Serviços</button>
+                </div>
+                
+                <div id="Dinos" class="tab-content active">
+                    <h3>Nossas Criaturas Gigantes</h3>
+                    <p>Conheça os dinossauros recriados pela InGen que habitam o parque. Clique nos cards para ler curiosidades!</p>
+                    
+                    <div class="dino-gallery">
+                        <div class="dino-card">
+                            <img src="imagens/dino-trex.jpg" alt="Tyrannosaurus Rex" class="dino-img">
+                            <h4>Tyrannosaurus Rex 👑</h4>
+                            <p class="species-info">O Rei dos dinossauros. Mantenha distância durante a alimentação!</p>
+                            <button class="btn-dino-details" data-dino="T-Rex">Ver Ficha Técnica</button>
+                        </div>
+                        
+                        <div class="dino-card">
+                            <img src="imagens/dino-raptor.jpg" alt="Velociraptor" class="dino-img">
+                            <h4>Velociraptor 🧠</h4>
+                            <p class="species-info">Extremamente inteligente e caça em grupo. Acesso restrito.</p>
+                            <button class="btn-dino-details" data-dino="Raptor">Ver Ficha Técnica</button>
+                        </div>
+
+                        <div class="dino-card">
+                            <img src="imagens/dino-triceratops.jpg" alt="Triceratops" class="dino-img">
+                            <h4>Triceratops 🛡️</h4>
+                            <p class="species-info">Famoso pelo seu colar ósseo e chifres. Visível no Campo Leste.</p>
+                            <button class="btn-dino-details" data-dino="Triceratops">Ver Ficha Técnica</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Mapa" class="tab-content">
+                    <h3>Planeje Sua Rota</h3>
+                    <p>Utilize o mapa oficial abaixo para localizar zonas de atrações, pontos de interesse, banheiros e zonas de segurança. **Clique no mapa para ampliar.**</p>
+                    
+                    <div class="map-container">
+                        <img src="imagens/mapa-parque.jpg" alt="Mapa Interativo do Parque" title="Clique para Ampliar o Mapa">
+                        <p><strong>Zonas de Contenção:</strong> As zonas vermelhas indicam áreas de alta restrição. Mantenha-se nas rotas verdes e azuis. O Centro de Visitantes é o ponto de encontro principal.</p>
+                        <button class="btn-service-details" data-service="Mapa">Baixar PDF do Mapa</button>
+                    </div>
+                </div>
+
+                <div id="Atracoes" class="tab-content">
+                    <h3>Tours e Passeios Inesquecíveis</h3>
+                    <p>Conheça as experiências que preparamos. Reserve seu horário!</p>
+                    
+                    <div class="attraction-gallery">
+                        <div class="attraction-card">
+                            <img src="imagens/atracoes-jeep.jpg" alt="Jeep Tour" class="attraction-img">
+                            <h4>Jeep Tour Clássico 🚗</h4>
+                            <p class="attraction-info">Percorra as trilhas do parque em nossos veículos blindados. (Duração: 45 min).</p>
+                            <button class="btn-attraction-details" data-attraction="Jeep Tour">Agendar Horário</button>
+                        </div>
+                        
+                        <div class="attraction-card">
+                            <img src="imagens/atracoes-gyrosphere.jpg" alt="Giroscópio" class="attraction-img">
+                            <h4>Giroscópio da Esperança 🌐</h4>
+                            <p class="attraction-info">Uma visão 360º de perto dos herbívoros no vale. (Aberto: 09h às 17h).</p>
+                            <button class="btn-attraction-details" data-attraction="Giroscópio">Ver Restrições</button>
+                        </div>
+
+                        <div class="attraction-card">
+                            <img src="imagens/atracoes-lab.jpg" alt="Laboratório de Criação" class="attraction-img">
+                            <h4>Laboratório de Criação 🥚</h4>
+                            <p class="attraction-info">Visite o berçário e veja um dinossauro nascer ao vivo! (Recomendado para Famílias).</p>
+                            <button class="btn-attraction-details" data-attraction="Laboratório">Mais Informações</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="Servicos" class="tab-content">
+                    <h3>Alimentação e Loja</h3>
+                    <p>O Parque possui uma infraestrutura completa para sua expedição. Descanse e compre suas lembranças aqui.</p>
+                    
+                    <div class="service-gallery">
+                        <div class="service-card">
+                            <img src="imagens/servicos-restaurante.jpg" alt="Paddock Grill" class="service-img">
+                            <h4>Paddock Grill 🍔</h4>
+                            <p class="service-info">Nosso principal restaurante. Oferece desde churrasco a lanches rápidos. (10:00h - 19:00h).</p>
+                            <button class="btn-service-details" data-service="Paddock Grill">Ver Cardápio</button>
+                        </div>
+                        
+                        <div class="service-card">
+                            <img src="imagens/servicos-loja.jpg" alt="Loja de Souvenirs" class="service-img">
+                            <h4>Loja de Souvenirs 🛍️</h4>
+                            <p class="service-info">Camisetas, miniaturas e réplicas de fósseis. Leve uma lembrança do seu dia no parque!</p>
+                            <button class="btn-service-details" data-service="Loja">Localizar no Mapa</button>
+                        </div>
+                        
+                        <div class="service-card">
+                            <img src="imagens/servicos-restaurante.jpg" alt="Primeira Ajuda" class="service-img"> 
+                            <h4>Primeira Ajuda ⚕️</h4>
+                            <p class="service-info">Localizado no centro do Visitor Center. Equipe médica disponível 24h para emergências.</p>
+                            <button class="btn-service-details" data-service="Primeira Ajuda">Ligar para Segurança</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="promotions-section">
+        <div class="container">
+            <h2>🔥 OFERTAS DA SEMANA JURÁSSICA</h2>
+            <div class="promo-cards">
+                
+                <div class="card">
+                    <img src="imagens/promo-trex.jpg" alt="T-Rex" class="card-img">
+                    <h3>Desconto de 15%</h3>
+                    <p>Ingressos para Terças-feiras. Não perca!</p>
+                    <a href="#" class="btn-link">Saiba Mais</a> 
+                </div>
+
+                <div class="card">
+                    <img src="imagens/promo-velociraptor.jpg" alt="Velociraptor" class="card-img">
+                    <h3>Novo Pacote Exclusivo</h3>
+                    <p>Encontro com a Equipe de Contenção.</p>
+                    <a href="#" class="btn-link">Ver Detalhes</a>
+                </div>
+
+                <div class="card">
+                    <img src="imagens/promo-brachiosaurus.jpg" alt="Brachiosaurus" class="card-img">
+                    <h3>Aniversariante Não Paga!</h3>
+                    <p>Traga 3 acompanhantes e ganhe a entrada.</p>
+                    <a href="#" class="btn-link">Resgatar Promoção</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-column">
+                    <h4>Ajuda Rápida</h4>
+                    <ul>
+                        <li><a href="#">Horário de Funcionamento</a></li>
+                        <li><a href="#">Regras de Meia-Entrada</a></li>
+                        <li><a href="#">Acessibilidade do Parque</a></li>
+                        <li><a href="#">Central de Dúvidas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <p>Fale Conosco: (00) 1234-5678</p>
+                    <p>Email: <a href="mailto:contato@jurassicpark.com">contato@jurassicpark.com</a></p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>Direitos Autorais © 2025 Jurassic Park - InGen Corporation. | <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
